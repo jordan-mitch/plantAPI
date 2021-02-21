@@ -6,10 +6,10 @@ plant.apiKey = '8Wqyv65CkcZFWu8BYoOZfiYhnd9MmCLE3d6t-loWYd0';
 
 
 
-plant.getImages = () => {
+plant.getPlantImages = () => {
 
      const randomNum = Math.floor((Math.random() * 18879) + 1);
-    
+    console.log('fsafs')
      const url = new URL(proxy);
     url.search = new URLSearchParams({
         reqUrl: plant.apiUrl,
@@ -19,18 +19,20 @@ plant.getImages = () => {
 
     fetch(url).then((response) => {
         return response.json()
-    }).then((jsonResponse) => {
-     //    console.log(jsonResponse)
+
+     }).then((jsonResponse) => {
+     console.log(jsonResponse)
      plant.displayImage(jsonResponse);
+
     });
 };
 
 
 plant.displayImage = (apiData) =>{
-     
+     console.log(apiData)
      const apiImages = apiData.data; 
      let randomImage = apiImages[Math.floor((Math.random() * apiImages.length ))];
-     
+     console.log(apiImages)
      const divElement = document.querySelector('#imageContainer');
      const image = document.createElement('img');
 
@@ -40,12 +42,13 @@ plant.displayImage = (apiData) =>{
      divElement.appendChild(image)
 }
 
+
 // for the display image function, i decided to display one photo at a time but we can fix that if we change our minds. Unfortunately, not every single plant comes with an image_url so we might need to change some of our ideas? but i am able to display the image onto the screen. 
 
 
 
 plant.init = () => {
-     plant.getImages();
+     plant.getPlantImages();
 
 };
 plant.init();
