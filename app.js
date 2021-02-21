@@ -3,7 +3,7 @@ const plant = {}
 
 
 plant.apiUrl = `https://trefle.io/api/v1/plants?page=1`; 
-plant.apiKey = '8Wqyv65CkcZFWu8BYoOZfiYhnd9MmCLE3d6t-loWYd0';
+plant.apiKey = `8Wqyv65CkcZFWu8BYoOZfiYhnd9MmCLE3d6t-loWYd0`;
 
 
 
