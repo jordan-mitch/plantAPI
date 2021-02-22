@@ -8,7 +8,7 @@ plant.apiKey = '8Wqyv65CkcZFWu8BYoOZfiYhnd9MmCLE3d6t-loWYd0';
 
 plant.getPlantImages = () => {
 
-     const randomNum = Math.floor((Math.random() * 10000) + 1);
+     const randomNum = Math.floor((Math.random() * 1000) + 1);
     console.log('fsafs')
      const url = new URL(proxy);
     url.search = new URLSearchParams({
@@ -21,7 +21,7 @@ plant.getPlantImages = () => {
         return response.json()
 
      }).then((jsonResponse) => {
-     console.log(jsonResponse)
+     // console.log(jsonResponse)
      plant.displayImage(jsonResponse);
 
     });
@@ -30,18 +30,46 @@ plant.getPlantImages = () => {
 
 plant.displayImage = (apiData) =>{
 
-     const apiImages = apiData.data; 
-     let randomImage = apiImages[Math.floor((Math.random() * apiImages.length ))];
-     console.log(randomImage)
+     const apiPlantArray = apiData.data; 
+     console.log(apiPlantArray)
+     let newArray = [];
+
+
+     apiPlantArray.forEach((plantObjs =>{
+          if(plantObjs.image_url && plantObjs.common_name !== null && plantObjs.image_url.includes('cloudfront')){
+               newArray.push(plantObjs)
+          }
+     }))
+     
+     let chosenPlantApi = newArray[Math.floor((Math.random() * newArray.length ))];
+     console.log(chosenPlantApi)
+
+     //appending the image
      const divElement = document.querySelector('#imageContainer');
      const image = document.createElement('img');
+     image.src = chosenPlantApi.image_url
+     image.alt = chosenPlantApi.scientific_name; 
+     divElement.appendChild(image)
 
-     image.src = randomImage.image_url
-     image.alt = randomImage.scientific_name; 
+     //appending the title/description
+     const ulElement = document.querySelector('.plantDescription');
+     const liElement=document.createElement('li')
+
+     const scientificName = document.createTextNode(`Scientific Name: ${chosenPlantApi.scientific_name}`);
+     const familyCommonName = document.createTextNode(`Common Family Name: ${chosenPlantApi.family_common_name}`);
+
+     // liElement.appendChild(scientificName);
+     // liElement.appendChild(familyCommonName)
+
+
+     ulElement.appendChild(scientificName);
+     ulElement.appendChild(familyCommonName);
+
+
+
 
      
 
-     divElement.appendChild(image)
 };
 
 // plant API - scientific_name, family_common_name, year, author , bibliography 
@@ -51,8 +79,42 @@ plant.displayImage = (apiData) =>{
 
 
 
+
+// plant.displayData = (apiData) => {
+
+//     const apiPlantArray = apiData.data;
+
+//     let newArray = [];
+
+//     apiPlantArray.forEach((plantObjs) => {
+//         if (plantObjs.image_url && plantObjs.common_name !== null) { 
+//             newArray.push(plantObjs)
+//         }
+//     })
+
+//     console.log(newArray)
+
+//     let randomPlant = newArray[Math.floor((Math.random() * newArray.length))];
+//     const divElement = document.querySelector('#imageContainer');
+//     const image = document.createElement('img');
+
+//     image.src = randomPlant.image_url
+//     image.alt = randomPlant.common_name
+
+//     divElement.appendChild(image)
+
+
+//     console.log('Image: ', image.src)
+//     console.log('Name: ', image.alt)
+
+
+// }
+
+
+
 plant.init = () => {
      plant.getPlantImages();
 
 };
-plant.init();
+
+plant.init(); 
