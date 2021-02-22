@@ -36,8 +36,11 @@ plant.displayImage = (apiData) =>{
 
 
      apiPlantArray.forEach((plantObjs =>{
-          if(plantObjs.image_url && plantObjs.common_name !== null && plantObjs.image_url.includes('cloudfront')){
+          console.log(plantObjs)
+          if(plantObjs.family_common_name && plantObjs.common_name !== null && plantObjs.image_url.includes('cloudfront')){
                newArray.push(plantObjs)
+          }else{
+               console.log('try again')
           }
      }))
      
@@ -58,12 +61,11 @@ plant.displayImage = (apiData) =>{
      const scientificName = document.createTextNode(`Scientific Name: ${chosenPlantApi.scientific_name}`);
      const familyCommonName = document.createTextNode(`Common Family Name: ${chosenPlantApi.family_common_name}`);
 
-     // liElement.appendChild(scientificName);
-     // liElement.appendChild(familyCommonName)
+     liElement.appendChild(scientificName);
+     liElement.appendChild(familyCommonName)
 
 
-     ulElement.appendChild(scientificName);
-     ulElement.appendChild(familyCommonName);
+     ulElement.appendChild(liElement);
 
 
 
