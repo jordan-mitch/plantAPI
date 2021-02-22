@@ -8,7 +8,7 @@ plant.apiKey = '8Wqyv65CkcZFWu8BYoOZfiYhnd9MmCLE3d6t-loWYd0';
 
 plant.getPlantImages = () => {
 
-     const randomNum = Math.floor((Math.random() * 18879) + 1);
+     const randomNum = Math.floor((Math.random() * 10000) + 1);
     console.log('fsafs')
      const url = new URL(proxy);
     url.search = new URLSearchParams({
@@ -29,21 +29,25 @@ plant.getPlantImages = () => {
 
 
 plant.displayImage = (apiData) =>{
-     console.log(apiData)
+
      const apiImages = apiData.data; 
      let randomImage = apiImages[Math.floor((Math.random() * apiImages.length ))];
-     console.log(apiImages)
+     console.log(randomImage)
      const divElement = document.querySelector('#imageContainer');
      const image = document.createElement('img');
 
      image.src = randomImage.image_url
      image.alt = randomImage.scientific_name; 
 
+     
+
      divElement.appendChild(image)
-}
+};
+
+// plant API - scientific_name, family_common_name, year, author , bibliography 
 
 
-// for the display image function, i decided to display one photo at a time but we can fix that if we change our minds. Unfortunately, not every single plant comes with an image_url so we might need to change some of our ideas? but i am able to display the image onto the screen. 
+// species API - common_name, , family_common_name, year, author , bibliography, scientific_name 
 
 
 
