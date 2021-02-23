@@ -73,7 +73,6 @@ plant.displayPlantData = (apiData) => {
      const scientificName = document.createTextNode(`Scientific Name: ${chosenPlantApi.common_name}`);
      const familyCommonName = document.createTextNode(`Common Family Name: ${chosenPlantApi.family_common_name}`);
 
-   
 
 };
 
