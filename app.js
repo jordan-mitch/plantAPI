@@ -14,14 +14,13 @@ plant.getPlantData = () => {
      url.search = new URLSearchParams({
           reqUrl: plant.apiUrl,
           'params[token]': plant.apiKey,
-          'params[page]': randomNum // <------ check that out. I dont think its the "right" way to do this but its working!
+          'params[page]': randomNum
      });
 
      fetch(url).then((response) => {
           return response.json()
 
      }).then((jsonResponse) => {
-          // console.log(jsonResponse)
           plant.displayPlantData(jsonResponse);
 
      });
@@ -31,6 +30,7 @@ plant.getPlantData = () => {
 plant.displayPlantData = (apiData) => {
 
      const apiPlantArray = apiData.data;
+     
 
      let newArray = [];
 
@@ -49,7 +49,7 @@ plant.displayPlantData = (apiData) => {
      
 
      if (chosenPlantApi == undefined) {
-          // a message for the instructors in console lol, maybe itll make em laugh
+          
           console.log('There are many images that return null, this was our best solution to only return images. After all the filtering, we are sometimes left with nothing, so we ask the user to choose again')
           document.getElementById("imageContainer").innerHTML += "<p>Please choose another plant</p>"
      }
@@ -60,7 +60,7 @@ plant.displayPlantData = (apiData) => {
      image.src = chosenPlantApi.image_url;
 
      // this ensures that our image loads before the alt text, no jumpy text === good!
-     setTimeout(function(){
+     setTimeout(function () {
           image.alt = chosenPlantApi.common_name
      }, 1000);
      divElement.appendChild(image);
@@ -104,8 +104,8 @@ plant.getter = () =>{
 
 
 plant.init = () => {
-     // plant.getPlantData();
-     plant.getter();
+     plant.getPlantData();
+
 };
 
 plant.init(); 
