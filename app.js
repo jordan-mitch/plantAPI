@@ -6,7 +6,7 @@ plant.apiKey = '8Wqyv65CkcZFWu8BYoOZfiYhnd9MmCLE3d6t-loWYd0';
 
 
 
-plant.getPlantImages = () => {
+plant.getPlantData = () => {
 
      const randomNum = Math.floor((Math.random() * 1000) + 1);
 
@@ -22,13 +22,13 @@ plant.getPlantImages = () => {
 
      }).then((jsonResponse) => {
           // console.log(jsonResponse)
-          plant.displayImage(jsonResponse);
+          plant.displayPlantData(jsonResponse);
 
      });
 };
 
 
-plant.displayImage = (apiData) => {
+plant.displayPlantData = (apiData) => {
 
      const apiPlantArray = apiData.data;
 
@@ -47,8 +47,6 @@ plant.displayImage = (apiData) => {
 
      let chosenPlantApi = newArray[Math.floor((Math.random() * newArray.length))];
      
-     console.log(chosenPlantApi)
-     console.log(newArray)
 
      if (chosenPlantApi == undefined) {
           // a message for the instructors in console lol, maybe itll make em laugh
@@ -59,40 +57,56 @@ plant.displayImage = (apiData) => {
      //appending the image
      const divElement = document.querySelector('#imageContainer');
      const image = document.createElement('img');
-     image.src = chosenPlantApi.image_url
+     image.src = chosenPlantApi.image_url;
 
      // this ensures that our image loads before the alt text, no jumpy text === good!
      setTimeout(function(){
           image.alt = chosenPlantApi.common_name
      }, 1000);
-     divElement.appendChild(image)
+     divElement.appendChild(image);
 
      //appending the title/description
      const ulElement = document.querySelector('.plantDescription');
-     const liElement = document.createElement('li')
 
-     const scientificName = document.createTextNode(`Scientific Name: ${chosenPlantApi.common_name}`);
-     const familyCommonName = document.createTextNode(`Common Family Name: ${chosenPlantApi.family_common_name}`);
-
-     // liElement.appendChild(scientificName);
-     // liElement.appendChild(familyCommonName)
-
-
-     // ulElement.appendChild(liElement);
-     // *****************************************************************************************
-     // I believe these should be appending so that they are literal LI elements not UL elements, so we probably want to use innerHTML here in order to do that, for now I've commented them out because they're throwing off the CSS fung shui lol
-
-     // ulElement.appendChild(scientificName);
-     // ulElement.appendChild(familyCommonName);
+     const commonName = chosenPlantApi.common_name;
+     const familyCommonName = chosenPlantApi.family_common_name;
+     const scientificName = chosenPlantApi.scientific_name; 
+     const author = chosenPlantApi.author;
+     const bibliography = chosenPlantApi.bibliography; 
+     const year = chosenPlantApi.year
 
 
+     let plantListData = [
+          `<span>Common Name:</span> ${commonName}`, 
+          `<span>Family Name:</span> ${familyCommonName}`,
+          `<span>Scientific Name:</span> ${scientificName}`,
+          `<span>Author of Discovery:</span> ${author}`,
+          `<span>Bibliography:</span>${bibliography}`,
+          `<span>Year of Discovery</span>${year}`
+     ]
+
+     plantListData.forEach((plantDescription)=>{
+          const liElement = document.createElement('li')
+          ulElement.appendChild(liElement);
+          liElement.innerHTML += plantDescription;
+     });
 };
 
+plant.getter = () =>{
+     document.querySelector('#randomizerButton2').addEventListener('click', function(){
+
+          document.querySelector('#imageContainer').innerHTML=''; 
+          document.querySelector('.plantDescription').innerHTML='';
+
+          plant.getPlantData();
+     });
+};
 
 
 plant.init = () => {
-     plant.getPlantImages();
-
+     plant.getPlantData();
+     plant.getter();
 };
 
 plant.init(); 
+
