@@ -8,19 +8,22 @@ plant.apiKey = '8Wqyv65CkcZFWu8BYoOZfiYhnd9MmCLE3d6t-loWYd0';
 
 plant.getPlantData = () => {
 
+     // choose a random page number
      const randomNum = Math.floor((Math.random() * 1000) + 1);
 
      const url = new URL(proxy);
      url.search = new URLSearchParams({
           reqUrl: plant.apiUrl,
           'params[token]': plant.apiKey,
-          'params[page]': randomNum
+          'params[page]': randomNum 
      });
 
      fetch(url).then((response) => {
           return response.json()
 
      }).then((jsonResponse) => {
+          document.querySelector('#imageContainer').innerHTML=''; 
+          document.querySelector('.plantDescription').innerHTML='';
           plant.displayPlantData(jsonResponse);
 
      });
@@ -30,13 +33,10 @@ plant.getPlantData = () => {
 plant.displayPlantData = (apiData) => {
 
      const apiPlantArray = apiData.data;
-     
 
      let newArray = [];
 
-
      apiPlantArray.forEach((plantObjs => {
-
           // this filters out null images, null common names (needed for alt text) and images with broken links
           if (plantObjs.image_url && plantObjs.common_name !== null && plantObjs.image_url.includes('floristic') == false) {
                newArray.push(plantObjs)
@@ -46,12 +46,10 @@ plant.displayPlantData = (apiData) => {
      }))
 
      let chosenPlantApi = newArray[Math.floor((Math.random() * newArray.length))];
-     
 
      if (chosenPlantApi == undefined) {
-          
-          console.log('There are many images that return null, this was our best solution to only return images. After all the filtering, we are sometimes left with nothing, so we ask the user to choose again')
-          document.getElementById("imageContainer").innerHTML += "<p>Please choose another plant</p>"
+          // There are many images that return null, this was our best solution to only return images. After all the filtering, we are sometimes left with nothing, so we ask the user to choose again
+          document.getElementById("imageContainer").innerHTML += "<p>Please click for another Plant</p>"
      }
 
      //appending the image
@@ -59,8 +57,8 @@ plant.displayPlantData = (apiData) => {
      const image = document.createElement('img');
      image.src = chosenPlantApi.image_url;
 
-     // this ensures that our image loads before the alt text, no jumpy text === good!
-     setTimeout(function () {
+     // this ensures that our image loads before the alt text
+     setTimeout(function(){
           image.alt = chosenPlantApi.common_name
      }, 1000);
      divElement.appendChild(image);
@@ -68,6 +66,7 @@ plant.displayPlantData = (apiData) => {
      //appending the title/description
      const ulElement = document.querySelector('.plantDescription');
 
+     // elements to go into the UL as LI items
      const commonName = chosenPlantApi.common_name;
      const familyCommonName = chosenPlantApi.family_common_name;
      const scientificName = chosenPlantApi.scientific_name; 
@@ -75,16 +74,17 @@ plant.displayPlantData = (apiData) => {
      const bibliography = chosenPlantApi.bibliography; 
      const year = chosenPlantApi.year
 
-
+     // create an array to loop over in order to append data related ot the image to screen
      let plantListData = [
-          `<span>Common Name:</span> ${commonName}`, 
-          `<span>Family Name:</span> ${familyCommonName}`,
-          `<span>Scientific Name:</span> ${scientificName}`,
-          `<span>Author of Discovery:</span> ${author}`,
-          `<span>Bibliography:</span>${bibliography}`,
-          `<span>Year of Discovery</span>${year}`
+          `<span class="title">Common Name:</span> ${commonName}`, 
+          `<span class="title">Family Name:</span> ${familyCommonName}`,
+          `<span class="title">Scientific Name:</span> ${scientificName}`,
+          `<span class="title">Author of Discovery:</span> ${author}`,
+          `<span class="title">Bibliography: </span>${bibliography}`,
+          `<span class="title">Year of Discovery: </span>${year}`
      ]
 
+     // the loop that goes over the above array, creates li items
      plantListData.forEach((plantDescription)=>{
           const liElement = document.createElement('li')
           ulElement.appendChild(liElement);
@@ -93,19 +93,14 @@ plant.displayPlantData = (apiData) => {
 };
 
 plant.getter = () =>{
-     document.querySelector('#randomizerButton2').addEventListener('click', function(){
-
-          document.querySelector('#imageContainer').innerHTML=''; 
-          document.querySelector('.plantDescription').innerHTML='';
-
+     document.querySelector('#plantRandomizer').addEventListener('click', function(){
           plant.getPlantData();
-     });
+     })
 };
-
 
 plant.init = () => {
      plant.getPlantData();
-
+     plant.getter();
 };
 
 plant.init(); 

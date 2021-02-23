@@ -1,15 +1,19 @@
 @import "partials/setup";
+@import "partials/fonts";
+
+$green: #41b913;
+$blue: #38A4D4;
 
 .discoverPlants {
+	// border: 2px solid blue;
 	height: 100vh;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	border: 2px solid blue;
 }
 
 .sectionOne {
-	border: 2px solid red;
+	// border: 2px solid red;
 	width: 1200px;
 	height: 380px;
 	display: flex;
@@ -18,11 +22,11 @@
 }
 
 .imageContainer {
+	// border: 2px solid red;
 	display: flex;
 	flex-direction: column-reverse;
 	align-items: center;
 	justify-content: center;
-	border: 2px solid red;
 	width: 300px;
 	height: 300px;
 }
@@ -38,25 +42,58 @@
 }
 
 .descriptionContainer {
-	border: 2px solid yellow;
+	// border: 2px solid yellow;
+	@include dotGothic;
+	color: black;
 	width: 250px;
+	line-height: 1.6;
+
+	h2{
+		text-align: center;
+		font-size: 1.2rem;
+	}
+	
+	li{
+		list-style: none;
+		margin: 10px;
+	}
+
+	span{
+		font-weight:bold;
+	}
 }
 
 .buttons {
+	// border: 2px solid yellow;
 	width: 70%;
 	display: flex;
 	justify-content: space-between;
-	border: 2px solid yellow;
+	
 }
 
-.buttonTwo {
+.button {
 	width: 200px;
 	margin-top: 25px;
+	height: 35px;
+	border: none;
+	background-color: $green;
+	border-radius: 7px;
+	@include dotGothic(1.2rem);
+
+		&:hover {
+			border: 2px solid $blue;
+			color: $blue;
+			background: white;
+		}
+		&:active {
+			transform: scale(0.99);
+		}
 }
 
 .infoContainer {
-	border: 2px solid blue;
+	// border: 2px solid blue;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 }
+
