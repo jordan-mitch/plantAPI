@@ -104,7 +104,7 @@ plant.getter = () =>{
 
 
 plant.init = () => {
-     plant.getPlantData();
+     // plant.getPlantData();
      plant.getter();
 };
 
