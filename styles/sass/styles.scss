@@ -1,5 +1,4 @@
-@import 'partials/setup';
-
+@import "partials/setup";
 
 .discoverPlants {
 	height: 100vh;
@@ -11,24 +10,21 @@
 
 .sectionOne {
 	border: 2px solid red;
-	width: 100vw;
+	width: 1200px;
 	height: 380px;
 	display: flex;
 	justify-content: center;
+	flex-wrap: wrap;
 }
 
 .imageContainer {
 	display: flex;
 	flex-direction: column-reverse;
 	align-items: center;
+	justify-content: center;
 	border: 2px solid red;
 	width: 300px;
-
-}
-
-.buttonTwo {
-	width: 55%;
-	margin-top: 25px;
+	height: 300px;
 }
 
 .imageContainer img {
@@ -41,4 +37,26 @@
 	line-height: 50px;
 }
 
-.
+.descriptionContainer {
+	border: 2px solid yellow;
+	width: 250px;
+}
+
+.buttons {
+	width: 70%;
+	display: flex;
+	justify-content: space-between;
+	border: 2px solid yellow;
+}
+
+.buttonTwo {
+	width: 200px;
+	margin-top: 25px;
+}
+
+.infoContainer {
+	border: 2px solid blue;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}

@@ -6,7 +6,7 @@ plant.apiKey = '8Wqyv65CkcZFWu8BYoOZfiYhnd9MmCLE3d6t-loWYd0';
 
 
 
-plant.getPlantImages = () => {
+plant.getPlantData = () => {
 
      const randomNum = Math.floor((Math.random() * 1000) + 1);
 
@@ -14,23 +14,24 @@ plant.getPlantImages = () => {
      url.search = new URLSearchParams({
           reqUrl: plant.apiUrl,
           'params[token]': plant.apiKey,
-          'params[page]': randomNum // <------ check that out. I dont think its the "right" way to do this but its working!
+          'params[page]': randomNum
      });
 
      fetch(url).then((response) => {
           return response.json()
 
      }).then((jsonResponse) => {
-          // console.log(jsonResponse)
-          plant.displayImage(jsonResponse);
+
+          plant.displayPlantData(jsonResponse);
 
      });
 };
 
 
-plant.displayImage = (apiData) => {
+plant.displayPlantData = (apiData) => {
 
      const apiPlantArray = apiData.data;
+     
 
      let newArray = [];
 
@@ -44,12 +45,12 @@ plant.displayImage = (apiData) => {
      }))
 
      let chosenPlantApi = newArray[Math.floor((Math.random() * newArray.length))];
-     
+
      console.log(chosenPlantApi)
      console.log(newArray)
 
      if (chosenPlantApi == undefined) {
-          // a message for the instructors in console lol, maybe itll make em laugh
+          
           console.log('There are many images that return null, this was our best solution to only return images. After all the filtering, we are sometimes left with nothing, so we ask the user to choose again')
           document.getElementById("imageContainer").innerHTML += "<p>Please choose another plant</p>"
      }
@@ -60,7 +61,7 @@ plant.displayImage = (apiData) => {
      image.src = chosenPlantApi.image_url
 
      // this ensures that our image loads before the alt text, no jumpy text === good!
-     setTimeout(function(){
+     setTimeout(function () {
           image.alt = chosenPlantApi.common_name
      }, 1000);
      divElement.appendChild(image)
@@ -72,19 +73,14 @@ plant.displayImage = (apiData) => {
      const scientificName = document.createTextNode(`Scientific Name: ${chosenPlantApi.common_name}`);
      const familyCommonName = document.createTextNode(`Common Family Name: ${chosenPlantApi.family_common_name}`);
 
-     // *****************************************************************************************
-     // I believe these should be appending so that they are literal LI elements not UL elements, so we probably want to use innerHTML here in order to do that, for now I've commented them out because they're throwing off the CSS fung shui lol
-
-     // ulElement.appendChild(scientificName);
-     // ulElement.appendChild(familyCommonName);
-
+   
 
 };
 
 
 
 plant.init = () => {
-     plant.getPlantImages();
+     plant.getPlantData();
 
 };
 
