@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=DotGothic16&family=Lora:ital@0;1&family=Open+Sans:wght@400;600&family=Source+Sans+Pro:wght@300;400;600&display=swap");
 html {
   line-height: 1.15;
   -ms-text-size-adjust: 100%;
@@ -280,11 +281,9 @@ html {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  border: 2px solid blue;
 }
 
 .sectionOne {
-  border: 2px solid red;
   width: 1200px;
   height: 380px;
   display: -webkit-box;
@@ -311,7 +310,6 @@ html {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  border: 2px solid red;
   width: 300px;
   height: 300px;
 }
@@ -329,7 +327,6 @@ html {
 }
 
 .descriptionContainer {
-  border: 2px solid yellow;
   width: 250px;
 }
 
@@ -341,16 +338,33 @@ html {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  border: 2px solid yellow;
 }
 
-.buttonTwo {
+.button {
   width: 200px;
   margin-top: 25px;
+  height: 35px;
+  border: none;
+  background-color: #41b913;
+  border-radius: 7px;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 400;
+  font-size: 1.2rem;
+  color: white;
+}
+
+.button:hover {
+  border: 2px solid #38A4D4;
+  color: #38A4D4;
+  background: white;
+}
+
+.button:active {
+  -webkit-transform: scale(0.99);
+          transform: scale(0.99);
 }
 
 .infoContainer {
-  border: 2px solid blue;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
