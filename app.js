@@ -85,7 +85,7 @@ plant.displayPlantData = (apiData) => {
      divElement.appendChild(image);
 
      //appending the title/description
-     const ulElement = document.querySelector('.plantDescription');
+     const ulElement = document.querySelector('#plantDescription');
 
      // elements to go into the UL as LI items
      const commonName = chosenPlantApi.common_name;
