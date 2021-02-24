@@ -1,8 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=DotGothic16&family=Lora:ital@0;1&family=Open+Sans:wght@400;600&family=Source+Sans+Pro:wght@300;400;600&display=swap');
 
-@mixin dotGothic($fontSize) {
+@mixin mainFont($fontSize) {
 	font-family: 'Source Sans Pro', sans-serif;
 	font-weight: 400;
 	font-size: $fontSize;
 	color: white;
+}
+
+@mixin infoTitles($fontSize) {
+	font-family: 'Lora', sans-serif;
+	font-weight: 400;
+	font-size: $fontSize;
+	color: $blue;
 }

@@ -1,18 +1,18 @@
 
 const plant = {}
 const proxy = 'http://proxy.hackeryou.com';
-plant.apiUrl = 'https://trefle.io/api/v1/';
+plant.apiUrl = `https://trefle.io/api/v1/`;
 plant.apiKey = '8Wqyv65CkcZFWu8BYoOZfiYhnd9MmCLE3d6t-loWYd0';
 
 
 
 plant.getPlantData = () => {
      // choose a random page number
-     const randomNum = Math.floor((Math.random() * 18000) + 1);
+     const randomNum = Math.floor((Math.random() * 5000) + 1);
 
      const url = new URL(proxy);
      url.search = new URLSearchParams({
-          reqUrl: plant.apiUrl +'plants',
+          reqUrl: plant.apiUrl + 'plants',
           'params[token]': plant.apiKey,
           'params[page]': randomNum 
      });
@@ -30,12 +30,13 @@ plant.getPlantData = () => {
 
 
 plant.getSpeciesData = () => {
+
      // choose a random page number
-     const randomNum = Math.floor((Math.random() * 18000) + 1);
+     const randomNum = Math.floor((Math.random() * 10000) + 1);
 
      const url = new URL(proxy);
      url.search = new URLSearchParams({
-          reqUrl: plant.apiUrl +'species',
+          reqUrl: plant.apiUrl + 'species',
           'params[token]': plant.apiKey,
           'params[page]': randomNum 
      });
@@ -44,14 +45,12 @@ plant.getSpeciesData = () => {
           return response.json()
 
      }).then((jsonResponse) => {
-          document.querySelector('#imageContainer').innerHTML=''; 
-          document.querySelector('.plantDescription').innerHTML='';
-          console.log(jsonResponse)
+          document.querySelector('#speciesImageContainer').innerHTML=''; 
+          document.querySelector('#speciesDescription').innerHTML='';
+          
           plant.displaySpeciesData(jsonResponse);
      });
 };
-
-
 
 
 plant.displayPlantData = (apiData) => {
@@ -72,8 +71,6 @@ plant.displayPlantData = (apiData) => {
      let chosenPlantApi = newArray[Math.floor((Math.random() * newArray.length))];
 
      if (chosenPlantApi == undefined) {
-          // There are many images that return null, this was our best solution to only return images. After all the filtering, we are sometimes left with nothing, so we ask the user to choose again
-          // document.getElementById("imageContainer").innerHTML += "<p>Please click for another Plant</p>"
           plant.getPlantData();
      }
 
@@ -89,7 +86,7 @@ plant.displayPlantData = (apiData) => {
      divElement.appendChild(image);
 
      //appending the title/description
-     const ulElement = document.querySelector('.plantDescription');
+     const ulElement = document.querySelector('#plantDescription');
 
      // elements to go into the UL as LI items
      const commonName = chosenPlantApi.common_name;
@@ -119,24 +116,21 @@ plant.displayPlantData = (apiData) => {
 
 plant.displaySpeciesData = (apiData) => {
 
-     const apiPlantArray = apiData.data;
+     const apiSpeciesArray = apiData.data;
 
      let newArray = [];
-
-     apiPlantArray.forEach((plantObjs => {
+    
+     apiSpeciesArray.forEach((plantObjs => {
           // this filters out null images, null common names (needed for alt text) and images with broken links
           if (plantObjs.image_url && plantObjs.common_name !== null && plantObjs.image_url.includes('floristic') == false) {
                newArray.push(plantObjs)
-          }else{
-               console.log('try again')
           }
      }))
+
 
      let chosenPlantApi = newArray[Math.floor((Math.random() * newArray.length))];
 
      if (chosenPlantApi == undefined) {
-          // There are many images that return null, this was our best solution to only return images. After all the filtering, we are sometimes left with nothing, so we ask the user to choose again
-          // document.getElementById("imageContainer").innerHTML += "<p>Please click for another Plant</p>"
           plant.getSpeciesData();
      }
 
@@ -163,7 +157,7 @@ plant.displaySpeciesData = (apiData) => {
      const year = chosenPlantApi.year
 
      // create an array to loop over in order to append data related ot the image to screen
-     let speciesListData = [
+     let plantListData = [
           `<span class="title">Common Name:</span> ${commonName}`, 
           `<span class="title">Family Name:</span> ${familyCommonName}`,
           `<span class="title">Scientific Name:</span> ${scientificName}`,
@@ -173,32 +167,32 @@ plant.displaySpeciesData = (apiData) => {
      ]
 
      // the loop that goes over the above array, creates li items
-     speciesListData.forEach((plantDescription)=>{
+     plantListData.forEach((plantDescription)=>{
           const liElement = document.createElement('li')
           ulElement.appendChild(liElement);
           liElement.innerHTML += plantDescription;
      });
 };
 
-plant.plantGetter = () =>{
-     document.querySelector('#plantRandomizer').addEventListener('click', function(){     
-          plant.getPlantData();
-     })
 
+plant.listener = () =>{
+     document.querySelector('#plantRandomizer').addEventListener('click', function(){
+          plant.getPlantData();
+     });
+
+     document.querySelector('#speciesRandomizer').addEventListener('click', function(){
+          plant.getSpeciesData();
+     });
 };
 
-plant.speciesGetter = () =>{
-     document.querySelector('#plantRandomizer').addEventListener('click', function(){     
-          plant.getPlantData();
-     })
+     
 
-};
 
 plant.init = () => {
      plant.getPlantData();
-     plant.plantGetter();
      plant.getSpeciesData();
-     plant.speciesGetter(); 
+     plant.listener();
+
 };
 
 plant.init(); 

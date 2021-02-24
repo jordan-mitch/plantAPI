@@ -1,8 +1,8 @@
+$green: #41b913;
+$blue: #38a4d4;
+
 @import "partials/setup";
 @import "partials/fonts";
-
-$green: #41b913;
-$blue: #38A4D4;
 
 .discoverPlants {
 	// border: 2px solid blue;
@@ -14,11 +14,25 @@ $blue: #38A4D4;
 
 .sectionOne {
 	// border: 2px solid red;
-	width: 1200px;
-	height: 380px;
 	display: flex;
-	justify-content: center;
+	height: auto;
+	width: auto;
+	display: flex;
 	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.plantContainer,
+.speciesContainer {
+	display: flex;
+	// border: 2px solid red;
+}
+
+.infoContainer {
+	// border: 2px solid blue;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 .imageContainer {
@@ -43,19 +57,16 @@ $blue: #38A4D4;
 
 .descriptionContainer {
 	// border: 2px solid yellow;
-	@include dotGothic(1rem);
-	color: black;
-	width: 250px;
+	width: 300px;
 
-	h2{
-		text-align: center;
-			
-	}
-	
 	ul {
-		margin-top:0;
-		li{
-			list-style: none;
+		list-style-type: none;
+		padding-left: 25px;
+		padding-right: 25px;
+
+		li {
+			padding-top: 5px;
+			
 		}
 	}
 }
@@ -65,32 +76,27 @@ $blue: #38A4D4;
 	width: 70%;
 	display: flex;
 	justify-content: space-between;
-	
 }
 
 .button {
 	width: 200px;
 	margin-top: 25px;
-	height: 35px;
+	height: 50px;
 	border: none;
 	background-color: $green;
 	border-radius: 7px;
-	@include dotGothic(1.2rem);
+	@include mainFont(1.2rem);
 
-		&:hover {
-			border: 2px solid $blue;
-			color: $blue;
-			background: white;
-		}
-		&:active {
-			transform: scale(0.99);
-		}
+	&:hover {
+		border: 2px solid $blue;
+		color: $blue;
+		background: white;
+	}
+	&:active {
+		transform: scale(0.99);
+	}
 }
 
-.infoContainer {
-	// border: 2px solid blue;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+.title {
+	@include infoTitles(1rem);
 }
-
