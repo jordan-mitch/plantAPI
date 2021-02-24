@@ -28,7 +28,6 @@ plant.getPlantData = () => {
      });
 };
 
-
 plant.getSpeciesData = () => {
 
      // choose a random page number
@@ -38,7 +37,7 @@ plant.getSpeciesData = () => {
      url.search = new URLSearchParams({
           reqUrl: plant.apiUrl + 'species',
           'params[token]': plant.apiKey,
-          'params[page]': randomNum 
+          'params[page]': randomNum,
      });
 
      fetch(url).then((response) => {
@@ -51,7 +50,6 @@ plant.getSpeciesData = () => {
           plant.displaySpeciesData(jsonResponse);
      });
 };
-
 
 plant.displayPlantData = (apiData) => {
 
@@ -185,7 +183,7 @@ plant.listener = () =>{
      });
 };
 
-     
+
 
 
 plant.init = () => {
