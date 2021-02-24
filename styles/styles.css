@@ -339,12 +339,12 @@ html {
   text-align: center;
 }
 
-.descriptionContainer ul li {
-  list-style: none;
+.descriptionContainer ul {
+  margin-top: 0;
 }
 
-.descriptionContainer span {
-  font-weight: bold;
+.descriptionContainer ul li {
+  list-style: none;
 }
 
 .buttons {

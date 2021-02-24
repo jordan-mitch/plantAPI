@@ -43,23 +43,20 @@ $blue: #38A4D4;
 
 .descriptionContainer {
 	// border: 2px solid yellow;
-	@include dotGothic;
+	@include dotGothic(1rem);
 	color: black;
 	width: 250px;
-	line-height: 1.6;
 
 	h2{
 		text-align: center;
-		font-size: 1.2rem;
+			
 	}
 	
-	li{
-		list-style: none;
-		margin: 10px;
-	}
-
-	span{
-		font-weight:bold;
+	ul {
+		margin-top:0;
+		li{
+			list-style: none;
+		}
 	}
 }
 
