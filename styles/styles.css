@@ -360,6 +360,18 @@ header .fa-caret-down {
           animation: floatingArrow 3s infinite ease-in-out;
 }
 
+h2 {
+  padding-left: 25px;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 400;
+  font-size: 1.5rem;
+  color: white;
+  color: #41b913;
+  font-weight: bold;
+  -webkit-text-decoration: underline #41b913;
+          text-decoration: underline #41b913;
+}
+
 .discoverPlants {
   height: 100vh;
   display: -webkit-box;
@@ -471,7 +483,7 @@ header .fa-caret-down {
   border: none;
   background-color: #41b913;
   border-radius: 7px;
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'DotGothic16', sans-serif;
   font-weight: 400;
   font-size: 1.2rem;
   color: white;
@@ -489,11 +501,15 @@ header .fa-caret-down {
           transform: scale(0.99);
 }
 
+.button i {
+  padding-right: 10px;
+}
+
 .title {
   font-family: 'Lora', sans-serif;
-  font-weight: 400;
+  font-weight: bold;
   font-size: 1rem;
-  color: #38a4d4;
+  color: #41b913;
 }
 
 footer {
@@ -582,6 +598,9 @@ footer {
 }
 
 @media (max-width: 1215px) {
+  h1 {
+    text-align: center;
+  }
   .plantContainer {
     display: -webkit-box;
     display: -ms-flexbox;

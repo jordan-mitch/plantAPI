@@ -9,9 +9,9 @@
 
 @mixin infoTitles($fontSize) {
 	font-family: 'Lora', sans-serif;
-	font-weight: 400;
+	font-weight: bold;
 	font-size: $fontSize;
-	color: $blue;
+	color: $green;
 }
 
 @mixin heading($fontSize) {

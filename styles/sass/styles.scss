@@ -65,6 +65,13 @@ header {
 	}
 }
 
+h2{
+	padding-left: 25px;
+	@include mainFont(1.5rem);
+	color:$green;
+	font-weight:bold;
+	text-decoration: underline $green;
+}
 .discoverPlants {
 	// border: 2px solid blue;
 	height: 100vh;
@@ -142,7 +149,7 @@ header {
 	border: none;
 	background-color: $green;
 	border-radius: 7px;
-	@include mainFont(1.2rem);
+	@include heading(1.2rem);
 	cursor: pointer;
 
 	&:hover {
@@ -152,6 +159,10 @@ header {
 	}
 	&:active {
 		transform: scale(0.99);
+	}
+
+	i{
+		padding-right: 10px;
 	}
 }
 
@@ -205,6 +216,9 @@ footer {
 }
 
 @media (max-width: 1215px) {
+	h1{
+		text-align:center;
+	}
 	.plantContainer {
 		display: flex;
 		margin-bottom: 50px;
