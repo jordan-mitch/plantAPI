@@ -4,12 +4,74 @@ $blue: #38a4d4;
 @import "partials/setup";
 @import "partials/fonts";
 
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+}
+
+header {
+	height: 100vh;
+	min-height: 700px;
+	background: $green;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+	.headerContent {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		position: relative;
+	}
+
+	h1 {
+		margin: 0;
+		padding: 0;
+		@include heading(3rem);
+	}
+
+	p {
+		@include mainFont(1.5rem);
+		color: white;
+		padding: 10px;
+		margin: 0;
+	}
+
+	.fab {
+		position: absolute;
+		bottom: -150px;
+		left: 48%;
+		font-size: 3rem;
+		color: white;
+		animation: floating 3s infinite ease-in-out;
+		cursor: pointer;
+
+		&:hover {
+			color: #63eb2e;
+		}
+	}
+
+	.fa-caret-down {
+		position: absolute;
+		bottom: -175px;
+		font-size: 1.5rem;
+		color: white;
+		animation: floatingArrow 3s infinite ease-in-out;
+	}
+}
+
 .discoverPlants {
 	// border: 2px solid blue;
 	height: 100vh;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	min-height: 500px;
 }
 
 .sectionOne {
@@ -25,18 +87,15 @@ $blue: #38a4d4;
 .plantContainer,
 .speciesContainer {
 	display: flex;
-	// border: 2px solid red;
 }
 
 .infoContainer {
-	// border: 2px solid blue;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 }
 
 .imageContainer {
-	// border: 2px solid red;
 	display: flex;
 	flex-direction: column-reverse;
 	align-items: center;
@@ -53,10 +112,10 @@ $blue: #38a4d4;
 	border-radius: 40px;
 	text-align: center;
 	line-height: 50px;
+	box-shadow: 5px 1px 37px -11px rgba(0, 0, 0, 0.47);
 }
 
 .descriptionContainer {
-	// border: 2px solid yellow;
 	width: 300px;
 
 	ul {
@@ -66,13 +125,11 @@ $blue: #38a4d4;
 
 		li {
 			padding-top: 5px;
-			
 		}
 	}
 }
 
 .buttons {
-	// border: 2px solid yellow;
 	width: 70%;
 	display: flex;
 	justify-content: space-between;
@@ -86,6 +143,7 @@ $blue: #38a4d4;
 	background-color: $green;
 	border-radius: 7px;
 	@include mainFont(1.2rem);
+	cursor: pointer;
 
 	&:hover {
 		border: 2px solid $blue;
@@ -99,4 +157,65 @@ $blue: #38a4d4;
 
 .title {
 	@include infoTitles(1rem);
+}
+
+footer {
+	width: 100%;
+	height: 50px;
+	background-color: $blue;
+	text-align: center;
+	color: white;
+	font-family: "Source Sans Pro", sans-serif;
+}
+
+@keyframes floating {
+	0% {
+		transform: translateY(0px) rotate(13deg);
+	}
+
+	50% {
+		transform: translateY(10px) rotate(13deg);
+	}
+
+	50% {
+		transform: translateY(-10px) rotate(13deg);
+	}
+
+	100% {
+		transform: translateY(0) rotate(13deg);
+	}
+}
+
+@keyframes floatingArrow {
+	0% {
+		transform: translateY(0px);
+	}
+
+	50% {
+		transform: translateY(10px);
+	}
+
+	50% {
+		transform: translateY(10px);
+	}
+
+	100% {
+		transform: translateY(0);
+	}
+}
+
+@media (max-width: 1215px) {
+	.plantContainer {
+		display: flex;
+		margin-bottom: 50px;
+	}
+
+	.discoverPlants {
+		// border: 2px solid blue;
+		height: 100vh;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		min-height: 900px;
+	}
 }
