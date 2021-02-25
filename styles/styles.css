@@ -621,3 +621,70 @@ footer {
     min-height: 900px;
   }
 }
+
+@media (max-width: 700px) {
+  header {
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+  }
+  .headerContent {
+    margin-top: 120px;
+  }
+  .headerContent h1 {
+    width: 175px;
+  }
+  .plantContainer,
+  .speciesContainer {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .sectionOne {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    margin: 50px 0;
+  }
+  .discoverPlants {
+    height: auto;
+  }
+  .headerContent .fab {
+    position: absolute;
+    bottom: -125px;
+    left: 48%;
+    font-size: 3rem;
+    color: white;
+    -webkit-animation: floating 3s infinite ease-in-out;
+            animation: floating 3s infinite ease-in-out;
+    cursor: pointer;
+  }
+  .headerContent .fab:hover {
+    color: #63eb2e;
+  }
+  .headerContent .fa-caret-down {
+    position: absolute;
+    bottom: -150px;
+    font-size: 1.5rem;
+    color: white;
+    -webkit-animation: floatingArrow 3s infinite ease-in-out;
+            animation: floatingArrow 3s infinite ease-in-out;
+  }
+}
+
+@media (max-width: 550px) {
+  header {
+    min-height: 400px;
+  }
+  .headerContent {
+    margin-top: 50px;
+  }
+  footer {
+    font-size: 0.8rem;
+  }
+  footer p {
+    margin-top: 17px;
+  }
+}
