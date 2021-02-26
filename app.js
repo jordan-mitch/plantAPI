@@ -14,15 +14,15 @@ plant.getPlantData = () => {
      url.search = new URLSearchParams({
           reqUrl: plant.apiUrl + 'plants',
           'params[token]': plant.apiKey,
-          'params[page]': randomNum 
+          'params[page]': randomNum
      });
 
      fetch(url).then((response) => {
           return response.json()
 
      }).then((jsonResponse) => {
-          document.querySelector('#imageContainer').innerHTML=''; 
-          document.querySelector('.plantDescription').innerHTML='';
+          document.querySelector('#imageContainer').innerHTML = '';
+          document.querySelector('.plantDescription').innerHTML = '';
           plant.displayPlantData(jsonResponse);
 
      });
@@ -44,9 +44,9 @@ plant.getSpeciesData = () => {
           return response.json()
 
      }).then((jsonResponse) => {
-          document.querySelector('#speciesImageContainer').innerHTML=''; 
-          document.querySelector('#speciesDescription').innerHTML='';
-          
+          document.querySelector('#speciesImageContainer').innerHTML = '';
+          document.querySelector('#speciesDescription').innerHTML = '';
+
           plant.displaySpeciesData(jsonResponse);
      });
 };
@@ -61,7 +61,7 @@ plant.displayPlantData = (apiData) => {
           // this filters out null images, null common names (needed for alt text) and images with broken links
           if (plantObjs.image_url && plantObjs.common_name !== null && plantObjs.image_url.includes('floristic') == false) {
                newArray.push(plantObjs)
-          }else{
+          } else {
                console.log('try again')
           }
      }))
@@ -78,7 +78,7 @@ plant.displayPlantData = (apiData) => {
      image.src = chosenPlantApi.image_url;
 
      // this ensures that our image loads before the alt text
-     setTimeout(function(){
+     setTimeout(function () {
           image.alt = chosenPlantApi.common_name
      }, 1000);
      divElement.appendChild(image);
@@ -89,14 +89,14 @@ plant.displayPlantData = (apiData) => {
      // elements to go into the UL as LI items
      const commonName = chosenPlantApi.common_name;
      const familyCommonName = chosenPlantApi.family_common_name;
-     const scientificName = chosenPlantApi.scientific_name; 
+     const scientificName = chosenPlantApi.scientific_name;
      const author = chosenPlantApi.author;
-     const bibliography = chosenPlantApi.bibliography; 
+     const bibliography = chosenPlantApi.bibliography;
      const year = chosenPlantApi.year
 
      // create an array to loop over in order to append data related ot the image to screen
      let plantListData = [
-          `<span class="title">Common Name:</span> ${commonName}`, 
+          `<span class="title">Common Name:</span> ${commonName}`,
           `<span class="title">Family Name:</span> ${familyCommonName}`,
           `<span class="title">Scientific Name:</span> ${scientificName}`,
           `<span class="title">Author of Discovery:</span> ${author}`,
@@ -105,7 +105,7 @@ plant.displayPlantData = (apiData) => {
      ]
 
      // the loop that goes over the above array, creates li items
-     plantListData.forEach((plantDescription)=>{
+     plantListData.forEach((plantDescription) => {
           const liElement = document.createElement('li')
           ulElement.appendChild(liElement);
           liElement.innerHTML += plantDescription;
@@ -117,7 +117,7 @@ plant.displaySpeciesData = (apiData) => {
      const apiSpeciesArray = apiData.data;
 
      let newArray = [];
-    
+
      apiSpeciesArray.forEach((plantObjs => {
           // this filters out null images, null common names (needed for alt text) and images with broken links
           if (plantObjs.image_url && plantObjs.common_name !== null && plantObjs.image_url.includes('floristic') == false) {
@@ -138,7 +138,7 @@ plant.displaySpeciesData = (apiData) => {
      image.src = chosenPlantApi.image_url;
 
      // this ensures that our image loads before the alt text
-     setTimeout(function(){
+     setTimeout(function () {
           image.alt = chosenPlantApi.common_name
      }, 1000);
      divElement.appendChild(image);
@@ -149,14 +149,14 @@ plant.displaySpeciesData = (apiData) => {
      // elements to go into the UL as LI items
      const commonName = chosenPlantApi.common_name;
      const familyCommonName = chosenPlantApi.family_common_name;
-     const scientificName = chosenPlantApi.scientific_name; 
+     const scientificName = chosenPlantApi.scientific_name;
      const author = chosenPlantApi.author;
-     const bibliography = chosenPlantApi.bibliography; 
+     const bibliography = chosenPlantApi.bibliography;
      const year = chosenPlantApi.year
 
      // create an array to loop over in order to append data related ot the image to screen
      let plantListData = [
-          `<span class="title">Common Name:</span> ${commonName}`, 
+          `<span class="title">Common Name:</span> ${commonName}`,
           `<span class="title">Family Name:</span> ${familyCommonName}`,
           `<span class="title">Scientific Name:</span> ${scientificName}`,
           `<span class="title">Author of Discovery:</span> ${author}`,
@@ -165,7 +165,7 @@ plant.displaySpeciesData = (apiData) => {
      ]
 
      // the loop that goes over the above array, creates li items
-     plantListData.forEach((plantDescription)=>{
+     plantListData.forEach((plantDescription) => {
           const liElement = document.createElement('li')
           ulElement.appendChild(liElement);
           liElement.innerHTML += plantDescription;
@@ -173,12 +173,12 @@ plant.displaySpeciesData = (apiData) => {
 };
 
 
-plant.listener = () =>{
-     document.querySelector('#plantRandomizer').addEventListener('click', function(){
+plant.listener = () => {
+     document.querySelector('#plantRandomizer').addEventListener('click', function () {
           plant.getPlantData();
      });
 
-     document.querySelector('#speciesRandomizer').addEventListener('click', function(){
+     document.querySelector('#speciesRandomizer').addEventListener('click', function () {
           plant.getSpeciesData();
      });
 };
@@ -193,5 +193,5 @@ plant.init = () => {
 
 };
 
-plant.init(); 
+plant.init();
 

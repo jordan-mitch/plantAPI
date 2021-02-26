@@ -623,6 +623,14 @@ footer {
 }
 
 @media (max-width: 700px) {
+  .descriptionContainer {
+    text-align: center;
+    width: 320px;
+  }
+  .descriptionContainer h2 {
+    text-align: center;
+    padding: 0;
+  }
   header {
     -webkit-box-pack: start;
         -ms-flex-pack: start;
