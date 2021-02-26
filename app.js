@@ -7,7 +7,7 @@ plant.apiKey = '8Wqyv65CkcZFWu8BYoOZfiYhnd9MmCLE3d6t-loWYd0';
 
 
 plant.getPlantData = () => {
-     // choose a random page number
+   
      const randomNum = Math.floor((Math.random() * 5000) + 1);
 
      const url = new URL(proxy);
@@ -30,7 +30,7 @@ plant.getPlantData = () => {
 
 plant.getSpeciesData = () => {
 
-     // choose a random page number
+    
      const randomNum = Math.floor((Math.random() * 10000) + 1);
 
      const url = new URL(proxy);
@@ -58,7 +58,7 @@ plant.displayPlantData = (apiData) => {
      let newArray = [];
 
      apiPlantArray.forEach((plantObjs => {
-          // this filters out null images, null common names (needed for alt text) and images with broken links
+         
           if (plantObjs.image_url && plantObjs.common_name !== null && plantObjs.image_url.includes('floristic') == false) {
                newArray.push(plantObjs)
           } else {
@@ -72,21 +72,21 @@ plant.displayPlantData = (apiData) => {
           plant.getPlantData();
      }
 
-     //appending the image
+    
      const divElement = document.querySelector('#imageContainer');
      const image = document.createElement('img');
      image.src = chosenPlantApi.image_url;
 
-     // this ensures that our image loads before the alt text
+     
      setTimeout(function () {
           image.alt = chosenPlantApi.common_name
      }, 1000);
      divElement.appendChild(image);
 
-     //appending the title/description
+     
      const ulElement = document.querySelector('#plantDescription');
 
-     // elements to go into the UL as LI items
+     
      const commonName = chosenPlantApi.common_name;
      const familyCommonName = chosenPlantApi.family_common_name;
      const scientificName = chosenPlantApi.scientific_name;
@@ -94,7 +94,7 @@ plant.displayPlantData = (apiData) => {
      const bibliography = chosenPlantApi.bibliography;
      const year = chosenPlantApi.year
 
-     // create an array to loop over in order to append data related ot the image to screen
+     
      let plantListData = [
           `<span class="title">Common Name:</span> ${commonName}`,
           `<span class="title">Family Name:</span> ${familyCommonName}`,
@@ -104,7 +104,7 @@ plant.displayPlantData = (apiData) => {
           `<span class="title">Year of Discovery: </span>${year}`
      ]
 
-     // the loop that goes over the above array, creates li items
+     
      plantListData.forEach((plantDescription) => {
           const liElement = document.createElement('li')
           ulElement.appendChild(liElement);
@@ -132,21 +132,21 @@ plant.displaySpeciesData = (apiData) => {
           plant.getSpeciesData();
      }
 
-     //appending the image
+     
      const divElement = document.querySelector('#speciesImageContainer');
      const image = document.createElement('img');
      image.src = chosenPlantApi.image_url;
 
-     // this ensures that our image loads before the alt text
+     
      setTimeout(function () {
           image.alt = chosenPlantApi.common_name
      }, 1000);
      divElement.appendChild(image);
 
-     //appending the title/description
+     
      const ulElement = document.querySelector('#speciesDescription');
 
-     // elements to go into the UL as LI items
+    
      const commonName = chosenPlantApi.common_name;
      const familyCommonName = chosenPlantApi.family_common_name;
      const scientificName = chosenPlantApi.scientific_name;
@@ -154,7 +154,7 @@ plant.displaySpeciesData = (apiData) => {
      const bibliography = chosenPlantApi.bibliography;
      const year = chosenPlantApi.year
 
-     // create an array to loop over in order to append data related ot the image to screen
+     
      let plantListData = [
           `<span class="title">Common Name:</span> ${commonName}`,
           `<span class="title">Family Name:</span> ${familyCommonName}`,
@@ -164,7 +164,7 @@ plant.displaySpeciesData = (apiData) => {
           `<span class="title">Year of Discovery: </span>${year}`
      ]
 
-     // the loop that goes over the above array, creates li items
+   
      plantListData.forEach((plantDescription) => {
           const liElement = document.createElement('li')
           ulElement.appendChild(liElement);
