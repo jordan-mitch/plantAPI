@@ -681,6 +681,10 @@ footer {
   .headerContent {
     margin-top: 50px;
   }
+  h2 {
+    text-align: center;
+    padding-left: 0;
+  }
   footer {
     font-size: 0.8rem;
   }
