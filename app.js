@@ -61,8 +61,6 @@ plant.displayPlantData = (apiData) => {
          
           if (plantObjs.image_url && plantObjs.common_name !== null && plantObjs.image_url.includes('floristic') == false) {
                newArray.push(plantObjs)
-          } else {
-               console.log('try again')
           }
      }))
 
