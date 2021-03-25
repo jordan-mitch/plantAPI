@@ -1,13 +1,13 @@
 
 const plant = {}
-const proxy = 'https://proxy.hackeryou.com';
-plant.apiUrl = `https://trefle.io/api/v1/`;
-plant.apiKey = '8Wqyv65CkcZFWu8BYoOZfiYhnd9MmCLE3d6t-loWYd0';
-
 
 
 plant.getPlantData = () => {
-   
+     
+     const proxy = 'https://proxy.hackeryou.com';
+     plant.apiUrl = `https://trefle.io/api/v1/`;
+     plant.apiKey = '8Wqyv65CkcZFWu8BYoOZfiYhnd9MmCLE3d6t-loWYd0';
+
      const randomNum = Math.floor((Math.random() * 5000) + 1);
 
      const url = new URL(proxy);
@@ -30,6 +30,9 @@ plant.getPlantData = () => {
 
 plant.getSpeciesData = () => {
 
+     const proxy = 'https://proxy.hackeryou.com';
+     plant.apiUrl = `https://trefle.io/api/v1/`;
+     plant.apiKey = '8Wqyv65CkcZFWu8BYoOZfiYhnd9MmCLE3d6t-loWYd0';
     
      const randomNum = Math.floor((Math.random() * 10000) + 1);
 
